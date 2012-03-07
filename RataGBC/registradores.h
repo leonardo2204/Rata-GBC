@@ -1,0 +1,11 @@
+#define A (cpu::CPU->AF.b.h)
+#define B (cpu::CPU->BC.b.h)
+#define C (cpu::CPU->BC.b.l)
+#define D (cpu::CPU->DE.b.h)
+#define E (cpu::CPU->DE.b.l)
+#define F (cpu::CPU->AF.b.l)
+#define H (cpu::CPU->HL.b.h)
+#define L (cpu::CPU->HL.b.l)
+
+#define xHL (cpu::CPU->HL.w)
+#define xPC (cpu::CPU->PC)
