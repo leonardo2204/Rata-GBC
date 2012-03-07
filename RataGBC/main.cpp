@@ -9,19 +9,19 @@ int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 	RataGBC w;
-	QThread thr;
+	//QThread thr;
 	dasm dsm;
 	cpu *cpp = new cpu();
-	cpp->moveToThread(&thr);
-	QObject::connect(&thr,SIGNAL(started()),cpp,SLOT(cpu_emulates(int)));
-	thr.start();
+	//cpp->moveToThread(&thr);
+	//thr.start();
+	cpp->start();
 	FILE *file = fopen("Tetris DX.gbc","r");
 	int c = 0;
-	QObject::connect(cpp,SIGNAL(onEndProcess(UINT32)),&w,SLOT(receivedEndProcess(UINT32)));	
+	QObject::connect(cpp,SIGNAL(onEndProcess(UINT32)),&w,SLOT(receivedEndProcess(UINT32)),Qt::BlockingQueuedConnection);	
 	while(dsm.DAsm(file,w.ui.listWidget,c));
 	fclose(file);
 	w.show();
-	thr.quit();
-	thr.wait();
+	//thr.quit();
+	//thr.wait();
 	return a.exec();
 }

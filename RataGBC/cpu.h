@@ -7,7 +7,7 @@
 #include "memoria.h"
 #include "registradores.h"
 
-class cpu : public QObject
+class cpu : public QThread
 {
 	Q_OBJECT
 public:
@@ -40,11 +40,11 @@ public:
 	unsigned short getCpu();
 	int cpu_emulate(int);
 
-public slots:
-		void cpu_emulates(int);
-
 signals:
 	void onEndProcess(UINT32);
+
+protected:
+	void run();
 	
 private:
 	static struct Cpu *CPU;

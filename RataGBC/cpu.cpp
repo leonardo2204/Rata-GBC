@@ -919,9 +919,10 @@ __RST:
 	return ciclos-i;
 }
 
-void cpu::cpu_emulates(int i)
+void cpu::run()
 {
-	cpu_emulate(i);
+	cpu_emulate(100);
+	exec();
 }
 
 unsigned short cpu::getCpu()
@@ -932,4 +933,6 @@ unsigned short cpu::getCpu()
 cpu::~cpu(void)
 {
 	delete[] CPU;
+	quit();
+	wait();
 }
