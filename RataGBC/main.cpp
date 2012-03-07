@@ -1,27 +1,22 @@
 #include "ratagbc.h"
 #include <QtGui/QApplication>
-#include <QThread>
 #include "dasm.h"
 #include "eventos.h"
-#include "cpu.h"
 
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 	RataGBC w;
-	//QThread thr;
 	dasm dsm;
-	cpu *cpp = new cpu();
-	//cpp->moveToThread(&thr);
-	//thr.start();
-	cpp->start();
 	FILE *file = fopen("Tetris DX.gbc","r");
+	cpu *cpp = new cpu(file);
+	QObject::connect(cpp,SIGNAL(onEndProcess(UINT32)),&w,SLOT(receivedEndProcess(UINT32)),Qt::BlockingQueuedConnection);
+	cpp->start();
 	int c = 0;
-	QObject::connect(cpp,SIGNAL(onEndProcess(UINT32)),&w,SLOT(receivedEndProcess(UINT32)),Qt::BlockingQueuedConnection);	
+	rewind(file);
 	while(dsm.DAsm(file,w.ui.listWidget,c));
+
 	fclose(file);
 	w.show();
-	//thr.quit();
-	//thr.wait();
 	return a.exec();
 }

@@ -23,6 +23,21 @@
       <height>381</height>
      </rect>
     </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::TabFocus</enum>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>true</bool>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::SingleSelection</enum>
+    </property>
+    <property name="movement">
+     <enum>QListView::Snap</enum>
+    </property>
    </widget>
    <widget class="QListWidget" name="listWidget_2">
     <property name="geometry">

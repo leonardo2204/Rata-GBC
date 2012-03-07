@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'ratagbc.ui'
 **
-** Created: Tue 6. Mar 20:00:24 2012
+** Created: Wed 7. Mar 03:05:49 2012
 **      by: Qt User Interface Compiler version 4.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -62,6 +62,11 @@ public:
         listWidget = new QListWidget(centralWidget);
         listWidget->setObjectName(QString::fromUtf8("listWidget"));
         listWidget->setGeometry(QRect(10, 20, 331, 381));
+        listWidget->setMouseTracking(true);
+        listWidget->setFocusPolicy(Qt::TabFocus);
+        listWidget->setAlternatingRowColors(true);
+        listWidget->setSelectionMode(QAbstractItemView::SingleSelection);
+        listWidget->setMovement(QListView::Snap);
         listWidget_2 = new QListWidget(centralWidget);
         listWidget_2->setObjectName(QString::fromUtf8("listWidget_2"));
         listWidget_2->setGeometry(QRect(390, 140, 161, 192));

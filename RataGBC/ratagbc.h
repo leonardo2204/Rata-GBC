@@ -4,6 +4,7 @@
 #include <QtGui/QMainWindow>
 #include "ui_ratagbc.h"
 #include "defs.h"
+#include "cpu.h"
 
 class RataGBC : public QMainWindow
 {

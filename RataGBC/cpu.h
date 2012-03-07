@@ -12,6 +12,7 @@ class cpu : public QThread
 	Q_OBJECT
 public:
 	cpu(void);
+	cpu(FILE*);
 	~cpu(void);
 
 	typedef union {
@@ -37,7 +38,7 @@ public:
 	}Cpu;
 
 	
-	unsigned short getCpu();
+	static unsigned short getCpu();
 	int cpu_emulate(int);
 
 signals:

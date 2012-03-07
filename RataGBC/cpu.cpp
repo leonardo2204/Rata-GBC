@@ -34,23 +34,23 @@ cpu::Cpu *cpu::CPU;
 	A = (acc.b.l); }
 
 #define ADDW(n) { \
-	(acc) = (UINT32)CPU->HL.w + (UINT32)(n); \
+	(acc.w) = (UINT32)CPU->HL.w + (UINT32)(n); \
 	F = (F & (FZ)) \
 	| (FH & ((H ^ ((n)>>8) ^ (acc.b.h)) << 1)) \
-	| (acc.b << 4); \
+	| (acc.b.h << 4); \
 	CPU->HL.w = (acc.w); }
 
 #define ADDSP(n) { \
-	(acc) = (UINT32)CPU->SP + (UINT32)(signed char)(n); \
+	(acc.w) = (UINT32)CPU->SP + (UINT32)(signed char)(n); \
 	F = (FH & (((CPU->SP>>8) ^ ((n)>>8) ^ (acc.b.h)) << 1)) \
-	| (acc.b << 4); \
+	| (acc.b.h << 4); \
 	CPU->SP = (acc.w); }
 
 #define LDHLSP(n) { \
-	(acc) = (UINT32)CPU->SP + (UINT32)(signed char)(n); \
+	(acc.w) = (UINT32)CPU->SP + (UINT32)(signed char)(n); \
 	F = (FH & (((CPU->SP>>8) ^ ((n)>>8) ^ (acc.b.h)) << 1)) \
-	| (acc.b << 4); \
-	HL = (acc.w); }
+	| (acc.w << 4); \
+	CPU->HL.w = (acc.w); }
 
 #define CP(n) { \
 	(acc.w) = (UINT16)A - (UINT16)(n); \
@@ -456,9 +456,9 @@ static const unsigned char swap_table[256] =
 	0x0F, 0x1F, 0x2F, 0x3F, 0x4F, 0x5F, 0x6F, 0x7F, 0x8F, 0x9F, 0xAF, 0xBF, 0xCF, 0xDF, 0xEF, 0xFF,
 };
 
-cpu::cpu(void)
+cpu::cpu(FILE* f)
 {
-	memoria *mem = new memoria();
+	memoria *mem = new memoria(f);
 	CPU = new cpu::Cpu();
 	if(CPU == NULL) exit(-1);
 	CPU->IME = 0;
@@ -676,7 +676,7 @@ __LD_HL:
 		memoria::writeByte(memoria::readWord(xPC), A); CPU->PC += 2; break;
 
 	case 0xF8: /* LD HL,CPU->SP+imm */
-		//b = FETCH; LDHLSP(b); break;
+		b = FETCH; LDHLSP(b); break;
 	case 0xF9: /* LD CPU->SP,HL */
 		CPU->SP = CPU->HL.w; break;
 	case 0xFA: /* LD A,(imm) */
@@ -700,7 +700,7 @@ __LD_HL:
 	case 0x29: /* ADD HL,HL */
 		w = CPU->HL.w;
 __ADDW:
-		//ADDW(w);
+		ADDW(w);
 		break;
 
 	case 0x04: /* INC B */
@@ -865,7 +865,7 @@ __RST:
 		PUSH(CPU->AF.w); break;
 
 	case 0xE8: /* ADD CPU->SP,imm */
-		//b = FETCH; ADDSP(b); break;
+		b = FETCH; ADDSP(b); break;
 
 	case 0xF3: /* DI */
 		DI; break;
@@ -914,6 +914,7 @@ __RST:
 	clen <<= 1;
 	i -= clen;
 	emit onEndProcess((UINT32)op);
+	msleep(600);
 	if(i >0) goto next;
 
 	return ciclos-i;
@@ -927,7 +928,7 @@ void cpu::run()
 
 unsigned short cpu::getCpu()
 {
-	return this->CPU->PC;
+	return CPU->PC;
 }
 
 cpu::~cpu(void)

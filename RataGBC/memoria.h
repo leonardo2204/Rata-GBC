@@ -11,6 +11,7 @@ class memoria
 {
 public:
 	memoria(void);
+	memoria(FILE*);
 	~memoria(void);
 
 
