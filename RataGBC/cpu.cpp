@@ -485,7 +485,8 @@ int cpu::cpu_emulate(int ciclos){
 	i = ciclos;
 	
 	
-next:
+//next:
+	while((!CPU->IME) && i > 0){
 	op = FETCH;
 	ciclos = cycles_table[op];
 
@@ -915,7 +916,8 @@ __RST:
 	i -= clen;
 	emit onEndProcess((UINT32)op);
 	msleep(600);
-	if(i >0) goto next;
+	}
+	//if(i >0) goto next;
 
 	return ciclos-i;
 }

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'ratagbc.ui'
 **
-** Created: Wed 7. Mar 03:05:49 2012
+** Created: Wed 7. Mar 04:33:36 2012
 **      by: Qt User Interface Compiler version 4.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -24,6 +24,7 @@
 #include <QtGui/QStatusBar>
 #include <QtGui/QToolBar>
 #include <QtGui/QWidget>
+#include "telaGBC.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -40,6 +41,7 @@ public:
     QPushButton *stopBtn;
     QPushButton *stepBtn;
     QLineEdit *lineEdit;
+    telaGBC *telaGame;
     QMenuBar *menuBar;
     QMenu *menuArquivo;
     QMenu *menuSobre;
@@ -50,7 +52,7 @@ public:
     {
         if (RataGBCClass->objectName().isEmpty())
             RataGBCClass->setObjectName(QString::fromUtf8("RataGBCClass"));
-        RataGBCClass->resize(623, 621);
+        RataGBCClass->resize(584, 557);
         actionAbrir = new QAction(RataGBCClass);
         actionAbrir->setObjectName(QString::fromUtf8("actionAbrir"));
         actionSair = new QAction(RataGBCClass);
@@ -62,30 +64,29 @@ public:
         listWidget = new QListWidget(centralWidget);
         listWidget->setObjectName(QString::fromUtf8("listWidget"));
         listWidget->setGeometry(QRect(10, 20, 331, 381));
-        listWidget->setMouseTracking(true);
-        listWidget->setFocusPolicy(Qt::TabFocus);
-        listWidget->setAlternatingRowColors(true);
-        listWidget->setSelectionMode(QAbstractItemView::SingleSelection);
-        listWidget->setMovement(QListView::Snap);
+        listWidget->setMaximumSize(QSize(331, 381));
         listWidget_2 = new QListWidget(centralWidget);
         listWidget_2->setObjectName(QString::fromUtf8("listWidget_2"));
-        listWidget_2->setGeometry(QRect(390, 140, 161, 192));
+        listWidget_2->setGeometry(QRect(390, 210, 161, 192));
         runBtn = new QPushButton(centralWidget);
         runBtn->setObjectName(QString::fromUtf8("runBtn"));
-        runBtn->setGeometry(QRect(390, 350, 75, 23));
+        runBtn->setGeometry(QRect(390, 420, 75, 23));
         stopBtn = new QPushButton(centralWidget);
         stopBtn->setObjectName(QString::fromUtf8("stopBtn"));
-        stopBtn->setGeometry(QRect(470, 350, 75, 23));
+        stopBtn->setGeometry(QRect(470, 420, 75, 23));
         stepBtn = new QPushButton(centralWidget);
         stepBtn->setObjectName(QString::fromUtf8("stepBtn"));
-        stepBtn->setGeometry(QRect(390, 380, 75, 23));
+        stepBtn->setGeometry(QRect(390, 450, 75, 23));
         lineEdit = new QLineEdit(centralWidget);
         lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setGeometry(QRect(470, 380, 81, 20));
+        lineEdit->setGeometry(QRect(470, 450, 81, 20));
+        telaGame = new telaGBC(centralWidget);
+        telaGame->setObjectName(QString::fromUtf8("telaGame"));
+        telaGame->setGeometry(QRect(390, 30, 160, 144));
         RataGBCClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(RataGBCClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 623, 21));
+        menuBar->setGeometry(QRect(0, 0, 584, 21));
         menuArquivo = new QMenu(menuBar);
         menuArquivo->setObjectName(QString::fromUtf8("menuArquivo"));
         menuSobre = new QMenu(menuBar);

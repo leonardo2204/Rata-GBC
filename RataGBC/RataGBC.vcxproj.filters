@@ -74,6 +74,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_cpu.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="telaGBC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_telaGBC.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_telaGBC.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ratagbc.h">
@@ -89,6 +98,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="cpu.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="telaGBC.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

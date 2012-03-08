@@ -5,8 +5,8 @@ vector<memoria::MemoryRegion*> *memoria::memorias;
 
 memoria::memoria(FILE* s)
 {
-	mem = new UINT8[0xFFFF];
-	fread(mem,sizeof(UINT8),0xFFFF,s);
+	mem = new UINT8[0x10000];
+	fread(mem,sizeof(UINT8),0x10000,s);
 
 	memorias = new vector<MemoryRegion*>(11);
 	memorias->at(0) = (new RAMBankEnable(0x0000,0x1FFF));

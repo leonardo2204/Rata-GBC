@@ -15,7 +15,6 @@ int main(int argc, char *argv[])
 	int c = 0;
 	rewind(file);
 	while(dsm.DAsm(file,w.ui.listWidget,c));
-
 	fclose(file);
 	w.show();
 	return a.exec();
