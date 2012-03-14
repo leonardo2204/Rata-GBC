@@ -487,6 +487,7 @@ int cpu::cpu_emulate(int ciclos){
 	
 //next:
 	while((!CPU->IME) && i > 0){
+	mt.lock();
 	op = FETCH;
 	ciclos = cycles_table[op];
 
@@ -915,10 +916,11 @@ __RST:
 	clen <<= 1;
 	i -= clen;
 	emit onEndProcess((UINT32)op);
-	msleep(600);
+	mt.unlock();
+	//msleep(600);
 	}
 	//if(i >0) goto next;
-
+	wt.wait(&mt);
 	return ciclos-i;
 }
 
@@ -928,9 +930,14 @@ void cpu::run()
 	exec();
 }
 
-unsigned short cpu::getCpu()
+struct cpu::Cpu *cpu::getCpu()
 {
-	return CPU->PC;
+	return CPU;
+}
+
+void cpu::setIME()
+{
+	CPU->IME = 1;
 }
 
 cpu::~cpu(void)

@@ -14,7 +14,6 @@ public:
 	RataGBC(QWidget *parent = 0, Qt::WFlags flags = 0);
 	~RataGBC();
 	Ui::RataGBCClass ui;
-	void updateGui();
 
 	public slots:
 		void receivedEndProcess(UINT32);

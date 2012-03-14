@@ -3,7 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <QThread>
-
+#include <qwaitcondition.h>
+#include <qmutex.h>
 #include "memoria.h"
 #include "registradores.h"
 
@@ -38,8 +39,9 @@ public:
 	}Cpu;
 
 	
-	static unsigned short getCpu();
+	static struct Cpu *getCpu();
 	int cpu_emulate(int);
+	static void setIME();
 
 signals:
 	void onEndProcess(UINT32);
@@ -49,4 +51,6 @@ protected:
 	
 private:
 	static struct Cpu *CPU;
+	QMutex mt;
+	QWaitCondition wt;
 };

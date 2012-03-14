@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'ratagbc.ui'
 **
-** Created: Wed 7. Mar 04:33:36 2012
+** Created: Fri 9. Mar 02:41:11 2012
 **      by: Qt User Interface Compiler version 4.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
